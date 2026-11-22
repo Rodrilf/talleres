@@ -1,0 +1,94 @@
+ENUNCIADO:
+
+Desarrolla una aplicación web para gestionar los vehículos de varios talleres mecánicos.
+Un taller puede tener varios vehículos, pero cada vehículo pertenece a un único taller.
+
+La aplicación deberá ofrecer una API REST y una interfaz web con Thymeleaf.
+Ambas utilizarán los mismos DAO, sin duplicar consultas SQL.
+
+1. BASE DE DATOS
+
+Utiliza la base de datos gestion_talleres, con dos tablas:
+
+- talleres: nombre (VARCHAR(100), PK), ciudad (VARCHAR(100)).
+- vehiculos: matricula (VARCHAR(10), PK), marca (VARCHAR(100)), modelo (VARCHAR(100)), precio (DECIMAL(10,2)), taller (VARCHAR(100), FK a talleres.nombre).
+
+Debe haber inicialmente dos talleres y al menos tres vehículos.
+El script SQL se proporciona al final del enunciado.
+
+2. API REST
+
+Todas las rutas REST comienzan por /api y devuelven JSON.
+Los POST y PUT reciben sus datos en el cuerpo de la petición.
+
+GET    /api/talleres                    Lista todos los talleres.
+GET    /api/talleres/{nombre}           Muestra un taller con sus vehículos.
+GET    /api/vehiculos                   Lista todos los vehículos.
+POST   /api/vehiculos                   Inserta un vehículo.
+PUT    /api/vehiculos/{matricula}       Modifica marca, modelo y precio de un vehículo.
+DELETE /api/vehiculos/{matricula}       Elimina un vehículo.
+
+3. INTERFAZ THYMELEAF
+
+GET /talleres
+- Muestra nombre y ciudad de todos los talleres.
+- Cada taller tiene un enlace a su detalle.
+- Incluye un enlace a la lista de vehículos.
+
+GET /talleres/{nombre}
+- Muestra nombre y ciudad del taller seleccionado.
+- Lista matrícula, marca, modelo y precio de sus vehículos.
+
+GET /vehiculos
+- Lista todos los vehículos.
+- Incluye un formulario para añadir un vehículo.
+- Cada vehículo tiene un enlace para editarlo y un botón para eliminarlo.
+
+POST /vehiculos/guardar
+- Guarda un vehículo enviado desde el formulario.
+
+GET /vehiculos/editar/{matricula}
+- Muestra un formulario con los datos actuales del vehículo.
+
+POST /vehiculos/actualizar
+- Actualiza los datos del vehículo desde el formulario.
+
+POST /vehiculos/eliminar
+- Elimina el vehículo indicado desde el formulario.
+
+Después de guardar, actualizar o eliminar, se vuelve a /vehiculos.
+
+============================================================
+SCRIPT SQL
+============================================================
+
+DROP DATABASE IF EXISTS gestion_talleres;
+
+CREATE DATABASE gestion_talleres;
+
+USE gestion_talleres;
+
+CREATE TABLE talleres (
+    nombre VARCHAR(100) PRIMARY KEY,
+    ciudad VARCHAR(100)
+);
+
+CREATE TABLE vehiculos (
+    matricula VARCHAR(10) PRIMARY KEY,
+    marca VARCHAR(100),
+    modelo VARCHAR(100),
+    precio DECIMAL(10,2),
+    taller VARCHAR(100),
+    FOREIGN KEY (taller) REFERENCES talleres(nombre)
+);
+
+INSERT INTO talleres (nombre, ciudad) VALUES
+('Taller Central', 'Huesca'),
+('Taller Norte', 'Zaragoza');
+
+INSERT INTO vehiculos (matricula, marca, modelo, precio, taller) VALUES
+('1234ABC', 'Seat', 'Ibiza', 8500.00, 'Taller Central'),
+('5678DEF', 'Volkswagen', 'Golf', 12500.00, 'Taller Central'),
+('9012GHI', 'Ford', 'Focus', 9900.00, 'Taller Norte');
+
+
