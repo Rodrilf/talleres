@@ -22,5 +22,5 @@ public class ConexionBD {
     }
 
     // CLONE PARA COPIAR Y PEGAR EN CLASE:
-    // git clone https://github.com/Rodrilf/SimulacroTalleres.git
+    // https://github.com/Rodrilf/talleres.git
 }
