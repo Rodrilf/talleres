@@ -5,16 +5,14 @@ public class Vehiculo {
     private String marca;
     private String modelo;
     private Double precio;
-    private Taller taller;
-    private String nombreTaller;
+    private String taller;
 
-    public Vehiculo(String matricula, String marca, String modelo, Double precio, Taller taller) {
+    public Vehiculo(String matricula, String marca, String modelo, Double precio, String taller) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
         this.precio = precio;
         this.taller = taller;
-        this.nombreTaller = taller.getNombre();
     }
 
     public String getMatricula() {
@@ -49,19 +47,11 @@ public class Vehiculo {
         this.precio = precio;
     }
 
-    public Taller getTaller() {
+    public String getTaller() {
         return taller;
     }
 
-    public void setTaller(Taller taller) {
+    public void setTaller(String taller) {
         this.taller = taller;
-    }
-
-    public String getNombreTaller() {
-        return nombreTaller;
-    }
-
-    public void setNombreTaller(String nombreTaller) {
-        this.nombreTaller = nombreTaller;
     }
 }
