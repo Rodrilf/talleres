@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehículos</title>
+</head>
+<body>
+
+<nav>
+    <a href="/talleres">Talleres</a>
+    <a href="/vehiculos">Vehículos</a>
+    <a href="/nuevo">Nuevo taller</a>
+</nav>
+
+<h1>Vehículos</h1>
+
+<div th:each="vehiculo : ${vehiculos}">
+    <p th:text="${vehiculo.matricula}"></p>
+    <p th:text="${vehiculo.marca}"></p>
+    <p th:text="${vehiculo.modelo}"></p>
+    <p th:text="${vehiculo.precio}"></p>
+    <p th:text="${vehiculo.taller}"></p>
+
+    <a th:href="@{/vehiculos/editar/{matricula}(matricula=${vehiculo.matricula})}">Editar</a>
+
+    <form action="/vehiculos/eliminar" method="post">
+        <input type="hidden" name="matricula" th:value="${vehiculo.matricula}">
+        <button type="submit">Eliminar</button>
+    </form>
+
+    <hr>
+</div>
+
+<h2>Nuevo vehículo</h2>
+
+<form action="/vehiculos/guardar" method="post">
+
+    <input type="text" name="matricula" placeholder="Matrícula" required>
+    <input type="text" name="marca" placeholder="Marca" required>
+    <input type="text" name="modelo" placeholder="Modelo" required>
+    <input type="number" name="precio" step="0.01" placeholder="Precio" required>
+
+    <select name="taller" required>
+        <option th:each="t : ${talleres}"
+                th:value="${t.nombre}"
+                th:text="${t.nombre}">
+        </option>
+    </select>
+
+    <button type="submit">Guardar</button>
+
+</form>
+
+</body>
+</html>

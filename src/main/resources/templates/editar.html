@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar</title>
+</head>
+<body>
+
+<nav>
+    <a href="/talleres">Talleres</a>
+    <a href="/vehiculos">Vehículos</a>
+    <a href="/nuevo">Nuevo taller</a>
+</nav>
+
+<h1>Editar vehículo</h1>
+
+<form action="/vehiculos/actualizar" method="post">
+
+    <p>Matrícula:</p>
+    <input type="text" name="matricula" th:value="${vehiculo.matricula}" readonly>
+
+    <p>Marca:</p>
+    <input type="text" name="marca" th:value="${vehiculo.marca}" required>
+
+    <p>Modelo:</p>
+    <input type="text" name="modelo" th:value="${vehiculo.modelo}" required>
+
+    <p>Precio:</p>
+    <input type="number" name="precio" step="0.01" th:value="${vehiculo.precio}" required>
+
+    <p>Taller:</p>
+    <input type="text" name="taller" th:value="${vehiculo.taller}" readonly>
+
+    <button type="submit">Actualizar</button>
+
+</form>
+
+<a href="/vehiculos">Volver</a>
+
+</body>
+</html>

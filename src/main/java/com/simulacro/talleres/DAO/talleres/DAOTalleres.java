@@ -21,4 +21,5 @@ public interface DAOTalleres {
     Vehiculo updateVehiculo (String matricula, Vehiculo vehiculo);
     Vehiculo deleteVehiculo (String matricula);
 
+    List <Vehiculo> filtrarVehiculo(String nombre);
 }

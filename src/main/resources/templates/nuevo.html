@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo taller</title>
+</head>
+<body>
+
+<nav>
+    <a href="/talleres">Talleres</a>
+    <a href="/vehiculos">Vehículos</a>
+    <a href="/nuevo">Nuevo taller</a>
+</nav>
+
+
+<h1>Nuevo taller</h1>
+
+<form action="/talleres/nuevo" method="post">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="text" name="ciudad" placeholder="Ciudad" required>
+    <button type="submit">Guardar</button>
+</form>
+
+</body>
+</html>

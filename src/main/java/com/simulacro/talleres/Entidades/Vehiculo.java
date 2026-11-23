@@ -7,6 +7,9 @@ public class Vehiculo {
     private Double precio;
     private String taller;
 
+    public Vehiculo() {
+    }
+
     public Vehiculo(String matricula, String marca, String modelo, Double precio, String taller) {
         this.matricula = matricula;
         this.marca = marca;

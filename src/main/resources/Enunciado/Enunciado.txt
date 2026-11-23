@@ -29,31 +29,13 @@ DELETE /api/vehiculos/{matricula}       Elimina un vehículo.
 
 3. INTERFAZ THYMELEAF
 
-GET /talleres
-- Muestra nombre y ciudad de todos los talleres.
-- Cada taller tiene un enlace a su detalle.
-- Incluye un enlace a la lista de vehículos.
+talleres.html: listado de talleres.
 
-GET /talleres/{nombre}
-- Muestra nombre y ciudad del taller seleccionado.
-- Lista matrícula, marca, modelo y precio de sus vehículos.
+detalle.html: información del taller seleccionado y sus vehículos.
 
-GET /vehiculos
-- Lista todos los vehículos.
-- Incluye un formulario para añadir un vehículo.
-- Cada vehículo tiene un enlace para editarlo y un botón para eliminarlo.
+vehiculos.html: listado y formulario para añadir vehículos.
 
-POST /vehiculos/guardar
-- Guarda un vehículo enviado desde el formulario.
-
-GET /vehiculos/editar/{matricula}
-- Muestra un formulario con los datos actuales del vehículo.
-
-POST /vehiculos/actualizar
-- Actualiza los datos del vehículo desde el formulario.
-
-POST /vehiculos/eliminar
-- Elimina el vehículo indicado desde el formulario.
+editar.html: formulario de modificación de vehículos.
 
 Después de guardar, actualizar o eliminar, se vuelve a /vehiculos.
 

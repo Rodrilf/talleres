@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Talleres</title>
+</head>
+<body>
+
+<nav>
+    <a href="/talleres">Talleres</a>
+    <a href="/vehiculos">Vehículos</a>
+    <a href="/nuevo">Nuevo taller</a>
+</nav>
+
+<h1>Listado de talleres</h1>
+
+<hr>
+
+<div th:each="t : ${taller}">
+    <p th:text="${t.nombre}"></p>
+    <p th:text="${t.ciudad}"></p>
+    <a th:href="@{/talleres/{nombre}(nombre=${t.nombre})}"><button>Detalle</button></a>
+    <hr>
+</div>
+
+</body>
+</html>

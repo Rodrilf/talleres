@@ -24,23 +24,25 @@ public class TalleresRestController {
 
     // Parte del post para postman en talleres y en vehiculos
 
-    @PostMapping ("/api/talleres")
-    Taller addVehiculo (@RequestBody Taller taller){
-        DAOFactory.getInstance().getDaoTalleres().saveTaller(taller);
-        return taller;
-    }
-
     @PostMapping ("/api/vehiculos")
     Vehiculo addTaller (@RequestBody Vehiculo vehiculo) {
         DAOFactory.getInstance().getDaoTalleres().saveVehiculo(vehiculo);
         return vehiculo;
     }
 
-    // Parte del put para postman en talleres y en vehiculos
+    // Parte del put para postman en vehiculos
 
-    @PutMapping ("/api/talleres/{nombre}/editar")
-    Taller taller (@RequestBody Taller taller, @PathVariable String nombre){
-        DAOFactory.getInstance().getDaoTalleres().updateTaller(nombre, taller);
-        return taller;
+    @PutMapping("/api/vehiculos/{matricula}")
+    Vehiculo updateVehiculo(@RequestBody Vehiculo vehiculo, @PathVariable String matricula){
+        DAOFactory.getInstance().getDaoTalleres().updateVehiculo(matricula, vehiculo);
+        return vehiculo;
+    }
+
+    // Delete para vehiculos
+
+    @DeleteMapping ("/api/vehiculos/{matricula}")
+    Vehiculo deleteVehiculo(@RequestBody Vehiculo vehiculo, @PathVariable String matricula){
+        DAOFactory.getInstance().getDaoTalleres().deleteVehiculo(matricula);
+        return vehiculo;
     }
 }

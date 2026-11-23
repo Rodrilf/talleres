@@ -17,20 +17,20 @@ public class DAOTalleresMySQL implements DAOTalleres {
     @Override
     public List<Taller> getAllTaller() {
         String sql = "SELECT * FROM talleres";
-        List <Taller> talleres = new ArrayList<>();
+        List<Taller> talleres = new ArrayList<>();
 
         try {
             PreparedStatement ps = ConexionBD.getInstance().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()){
+            while (rs.next()) {
                 Taller taller = new Taller(
-                    rs.getString("nombre"),
-                    rs.getString("ciudad")
+                        rs.getString("nombre"),
+                        rs.getString("ciudad")
                 );
                 talleres.add(taller);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return talleres;
@@ -94,23 +94,23 @@ public class DAOTalleresMySQL implements DAOTalleres {
     @Override
     public List<Vehiculo> getAllVehiculo() {
         String sql = "SELECT * FROM vehiculos";
-        List <Vehiculo> vehiculos = new ArrayList<>();
+        List<Vehiculo> vehiculos = new ArrayList<>();
 
         try {
             PreparedStatement ps = ConexionBD.getInstance().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()){
+            while (rs.next()) {
                 Vehiculo vehiculo = new Vehiculo(
                         rs.getString("matricula"),
                         rs.getString("marca"),
                         rs.getString("modelo"),
                         rs.getDouble("precio"),
                         rs.getString("taller")
-                        );
+                );
                 vehiculos.add(vehiculo);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return vehiculos;
@@ -140,7 +140,7 @@ public class DAOTalleresMySQL implements DAOTalleres {
 
     @Override
     public Vehiculo updateVehiculo(String matricula, Vehiculo vehiculo) {
-        String sql = "UPDATE vehiculos SET matricula = ?, marca = ?, modelo = ?, precio = ?, taller = ? WHERE matricula = ?";
+        String sql = "UPDATE vehiculos SET matricula = ?, marca = ?, modelo = ?, precio = ? WHERE matricula = ?";
 
         try {
             PreparedStatement ps = ConexionBD.getInstance().prepareStatement(sql);
@@ -148,8 +148,7 @@ public class DAOTalleresMySQL implements DAOTalleres {
             ps.setString(2, vehiculo.getMarca());
             ps.setString(3, vehiculo.getModelo());
             ps.setDouble(4, vehiculo.getPrecio());
-            ps.setString(5, vehiculo.getTaller());
-            ps.setString(6, matricula);
+            ps.setString(5, matricula);
 
             ps.execute();
             return vehiculo;
@@ -173,5 +172,35 @@ public class DAOTalleresMySQL implements DAOTalleres {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // SELECT * WHERE FUNCIONAL
+
+    @Override
+    public List<Vehiculo> filtrarVehiculo(String nombre) {
+        String sql = "SELECT * FROM vehiculos WHERE taller = ?";
+        List<Vehiculo> vehiculos = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = ConexionBD.getInstance().prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Vehiculo vehiculo = new Vehiculo(
+                        rs.getString("matricula"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getDouble("precio"),
+                        rs.getString("taller")
+                );
+                vehiculos.add(vehiculo);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return vehiculos;
     }
 }
