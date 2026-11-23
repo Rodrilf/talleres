@@ -22,7 +22,6 @@ Todas las rutas REST comienzan por /api y devuelven JSON.
 Los POST y PUT reciben sus datos en el cuerpo de la petición.
 
 GET    /api/talleres                    Lista todos los talleres.
-GET    /api/talleres/{nombre}           Muestra un taller con sus vehículos.
 GET    /api/vehiculos                   Lista todos los vehículos.
 POST   /api/vehiculos                   Inserta un vehículo.
 PUT    /api/vehiculos/{matricula}       Modifica marca, modelo y precio de un vehículo.

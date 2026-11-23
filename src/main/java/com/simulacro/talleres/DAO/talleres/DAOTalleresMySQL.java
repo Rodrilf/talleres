@@ -57,13 +57,12 @@ public class DAOTalleresMySQL implements DAOTalleres {
     @Override
     public Taller updateTaller(String nombre, Taller taller) {
 
-        String sql = "UPDATE talleres SET nombre = ?, ciudad = ? WHERE nombre = ?";
+        String sql = "UPDATE talleres SET ciudad = ? WHERE nombre = ?";
 
         try {
             PreparedStatement statement = ConexionBD.getInstance().prepareStatement(sql);
-            statement.setString(1, taller.getNombre());
-            statement.setString(2, taller.getCiudad());
-            statement.setString(3, nombre);
+            statement.setString(1, taller.getCiudad());
+            statement.setString(2, nombre);
             statement.execute();
 
             return taller;
