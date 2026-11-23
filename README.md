@@ -1,4 +1,4 @@
-# Talleres — Guía rápida DWES
+# Talleres
 
 Aplicación Spring Boot + JDBC + MySQL + Thymeleaf para gestionar talleres y vehículos.
 
